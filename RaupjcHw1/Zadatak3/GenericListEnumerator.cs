@@ -6,33 +6,44 @@ namespace Zadatak3
     public class GenericListEnumerator<T> : IEnumerator<T>
     {
 
+        private GenericList<T> _genericList;
+
+        public int Count { get; private set; }
+
         public GenericListEnumerator(GenericList<T> genericList)
         {
-            
-            throw new System.NotImplementedException();
+            this._genericList = genericList;
+            Count = 0;
         }
 
         public void Dispose()
         {
-            throw new System.NotImplementedException();
         }
 
         public bool MoveNext()
         {
-            throw new System.NotImplementedException();
+            if (Count < _genericList.Count)
+            {
+                Count++;
+                return true;
+            }
+
+            return false;
         }
 
         public void Reset()
         {
-            throw new System.NotImplementedException();
+            Count = 0;
         }
 
-        public T Current { get; }
+        public T Current
+        {
+            get { return _genericList.GetElement(Count - 1); }
+        }
 
         object IEnumerator.Current
         {
             get { return Current; }
         }
     }
-
 }
